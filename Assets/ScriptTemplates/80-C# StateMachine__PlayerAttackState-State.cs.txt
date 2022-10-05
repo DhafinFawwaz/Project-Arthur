@@ -1,0 +1,76 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+public class #SCRIPTNAME# : PlayerBaseState
+{
+    public #SCRIPTNAME#(PlayerCore contextCore, PlayerStates PlayerStates) : base (contextCore, PlayerStates)
+    {
+        IsRootState = false;
+        _superState = ((PlayerAttackState)(States.Attack()));
+    }
+    PlayerAttackState _superState;
+    bool _isCancelable = false;
+    bool _isBufferable = false;
+    bool _isBuffered = false;
+    bool _isGravitied = false;
+    bool _isAnimationEnded = false;
+    public override void StateEnter()
+    {
+        Core.Animator.Play(Core.Animator.PlayerAttack_, -1, 0);
+        Core.Locomotion.Rb.velocity = new Vector2(0, Core.Locomotion.Rb.velocity.y);
+        _isCancelable = false;
+        _isBufferable = false;
+        _isBuffered = false;
+        _isGravitied = false;
+        _isAnimationEnded = false;
+        _superState.CurrentCombo++;
+    }
+
+    public override void StateUpdate()
+    {
+        if(_isBufferable && !_isCancelable && Core.Input.AttackInput.WasPressedThisFrame())
+            _isBuffered = true;
+        
+        else if(_isBufferable && _isCancelable && _isBuffered)
+            SwitchState(States.Attack_());
+        
+        else if(_isCancelable && Core.Input.AttackInput.WasPressedThisFrame() && !_isAnimationEnded)
+            SwitchState(States.Attack_());
+    }
+
+    public override void StateFixedUpdate()
+    {
+        if(_isGravitied && !Core.Locomotion.IsGrounded)Core.Locomotion.Gravity();
+    }
+
+    public override void StateExit()
+    {
+        #NOTRIM#
+    }
+
+    public override void StateOnAnimatorMove()
+    {
+        Vector2 targetPosition = (Vector2)Core.Animator.deltaPosition;
+        if(_isGravitied && !Core.Locomotion.IsGrounded)targetPosition.y = 0;
+        Core.transform.Translate(targetPosition);
+    }
+    public override void StateOnAttackBufferable() => _isBufferable = true;
+    public override void StateOnAttackCancelable() => _isCancelable = true;
+    public override void StateOnGravityEnabled() => _isGravitied = true;
+    public override void StateOnAttackBeforeEnd() => _isAnimationEnded = true;
+    public override void StateOnHitboxEnabled()
+    {
+        #NOTRIM#
+    }
+    public override void StateOnHitboxDisabled()
+    {
+        #NOTRIM#
+    }
+    public override void StateOnAttackEnd()
+    {
+        if(Core.Locomotion.IsGrounded)
+            SwitchSuperState(States.Ground());
+        else if(!Core.Locomotion.IsGrounded)
+            SwitchSuperState(States.Air());
+    }
+}

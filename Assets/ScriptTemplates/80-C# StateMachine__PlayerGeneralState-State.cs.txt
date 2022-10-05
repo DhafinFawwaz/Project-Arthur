@@ -1,0 +1,32 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+public class #SCRIPTNAME# : PlayerBaseState
+{
+    public #SCRIPTNAME#(PlayerCore contextCore, PlayerStates PlayerStates) : base (contextCore, PlayerStates)
+    {
+        IsRootState = false;
+        //_superState = ((#SCRIPTNAME#)(States.#SCRIPTNAME#()));
+    }
+    //#SCRIPTNAME# _superState;
+
+    public override void StateEnter()
+    {
+        #NOTRIM#
+    }
+
+    public override void StateUpdate()
+    {
+        #NOTRIM#
+    }
+
+    public override void StateFixedUpdate()
+    {
+        #NOTRIM#
+    }
+
+    public override void StateExit()
+    {
+        #NOTRIM#
+    }
+}

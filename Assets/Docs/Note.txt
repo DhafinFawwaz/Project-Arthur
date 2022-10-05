@@ -1,0 +1,22 @@
+Out = -4*(0.5 - In)*(0.5 - In) + 0.5
+
+
+DONT EVER FORGET SEMICOLON (";") ON SHADERS
+
+UNITY ERROR MESSAGE FOR SHADERS IS THE DUMBEST THING TO EVER EXIST
+
+
+CoinJump Shader
+- Red: determine wether it jumps or not
+- Green: determine the flipbook offset
+- Blue: determine the jump offset
+- Alpha: determine wether it affected by the jump shader or not. below 0.5f is off, the rest is on
+- If statement is nonexistance
+
+When importing sprite:
+- Change pixel per unit to 32
+- Filter mode to point (no filter)
+- Compression to none
+
+NavMeshAgent:
+- DONT ENABLE AUTO REPATH
