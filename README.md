@@ -1,2 +1,2 @@
 # Project Arthur
- Team Project for GIM
+A Top Down pixel art game made with UnityEngine(C#, HLSL)
