@@ -9,7 +9,8 @@ public class EnemyBanditSmallHurtState : EnemyBanditSmallBaseState
     }
     public override void StateEnter()
     {
-        Core.Agent.enabled = false;
+        // Core.Agent.enabled = false;
+        // Core.Agent.updatePosition = false;
         Core.Animator.Play("BanditHurt");
     }
     public override void StateUpdate()
@@ -33,7 +34,8 @@ public class EnemyBanditSmallHurtState : EnemyBanditSmallBaseState
 
     public override void StateOnAnimationEnd()
     {
-        Core.Agent.enabled = true;
+        // Core.Agent.updatePosition = true;
+        // Core.Agent.enabled = true;
         SwitchState(States.Ground());
     }
 }

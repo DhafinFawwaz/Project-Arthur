@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - BlackSmith
+  - Spawner
   layers:
   - Default
   - TransparentFX
@@ -18,7 +19,7 @@ TagManager:
   - Collectibles
   - Boundary
   - Obstacle
-  - 
+  - NPC
   - 
   - 
   - 
@@ -44,4 +45,7 @@ TagManager:
     locked: 0
   - name: Top
     uniqueID: 4221461085
+    locked: 0
+  - name: UI
+    uniqueID: 196023151
     locked: 0

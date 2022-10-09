@@ -20,3 +20,10 @@ When importing sprite:
 
 NavMeshAgent:
 - DONT ENABLE AUTO REPATH
+
+StateMachine:
+- Dont forget to toggle rootstate
+
+Dont forget to set the tag/layer after creating it.
+
+if you ever change from void Start() to void Awake(), always comment the reason behind it

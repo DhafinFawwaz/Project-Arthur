@@ -10,7 +10,7 @@ public class SaveManager : MonoBehaviour
     }
     void Start()
     {
-        LoadData();
+        // LoadData();
     }
 
 
@@ -25,14 +25,15 @@ public class SaveManager : MonoBehaviour
 
 
 
-    [SerializeField] Encryption encryption;
+    [SerializeField] Encryption _encryption;
     public void SaveData()
     {
-        encryption.SaveData(Data);
+        _encryption.SaveData(Data);
     }
-    public void LoadData()
+    public SaveData LoadData()
     {
-        Data = encryption.LoadData();
+        Data = _encryption.LoadData();
         OnDataLoaded();
+        return Data;
     }
 }

@@ -9,7 +9,7 @@ public class PlayerHurtState : PlayerBaseState
     }
     public override void StateEnter()
     {
-        
+        Core.Animator.Play("SwordHurt");
     }
     public override void StateUpdate()
     {
@@ -28,5 +28,10 @@ public class PlayerHurtState : PlayerBaseState
     public override void StateExit()
     {
         
+    }
+
+    public override void StateOnAnimationEnd()
+    {
+        SwitchState(States.Ground());
     }
 }

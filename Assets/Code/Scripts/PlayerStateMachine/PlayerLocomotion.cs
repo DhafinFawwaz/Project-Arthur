@@ -45,4 +45,31 @@ public class PlayerLocomotion : MonoBehaviour
 
 		_rb.AddForce(accelerationRate * speedDif);
 	}
+
+
+    float _launchedDuration = 0.2f;
+
+    public void Launch(Vector2 launchDirection, float length)
+    => StartCoroutine(Launched(launchDirection, length));
+    ushort key;
+    IEnumerator Launched(Vector2 launchDirection, float length)
+    {
+        // _core.OnHurt();
+        _rb.velocity = Vector2.zero;
+        Vector3 startPosition = _rb.position;
+        Vector3 targetPosition = _rb.position + launchDirection * length;
+        float t = 0;
+        key++;
+        ushort requirement = key;
+        while(t <= 1 && requirement == key)
+        {
+            t += Time.deltaTime/_launchedDuration;
+            _rb.MovePosition(Vector3.Lerp(startPosition, targetPosition, Ease.OutQuart(t)));
+            yield return null;
+        }
+        if(requirement == key)
+        {
+            _rb.MovePosition(targetPosition);
+        }
+    }
 }

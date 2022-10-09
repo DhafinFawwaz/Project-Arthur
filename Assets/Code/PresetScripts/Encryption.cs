@@ -11,9 +11,9 @@ public class Encryption : MonoBehaviour
 
     static readonly string JSONEncryptedKey = "#kJ83DAlowjkf39(#($%0_+[]:#dDA'a";
                                                //01234567890123456789012345678901
-    void Start()
+    void Awake()
     {
-        _path = "data/data/" + Application.identifier.ToString() + "/files/game.dat";//Path for android
+        // _path = "data/data/" + Application.identifier.ToString() + "/files/game.dat";//Path for android
         _path = Application.persistentDataPath + "/game.dat";//Path for pc
         LoadData();
     }
@@ -32,6 +32,7 @@ public class Encryption : MonoBehaviour
         }
 
         File.WriteAllBytes(_path, soup);
+        Debug.Log("File Saved");
     }
     public SaveData LoadData()
     {
@@ -46,7 +47,11 @@ public class Encryption : MonoBehaviour
 		else
 		{
             Debug.Log("File not found");
-            return new SaveData();
+            SaveData saveData = new SaveData();
+            saveData.FastestSwordsmanTime = 9999999;
+            saveData.RankSwordsman = 4;
+            return saveData;
+            // return new SaveData();
 		}
     }
 }

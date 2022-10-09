@@ -3,7 +3,6 @@ using UnityEngine.AI;
 public class EnemyBanditSmallCore : EnemyCore
 {
 #region Members
-    EnemyBanditSmallLocomotion _locomotion;
     EnemyBanditSmallAnimator _animator;
 
     #region StateMachine
@@ -14,7 +13,6 @@ public class EnemyBanditSmallCore : EnemyCore
 
 
 #region Getter/Setter
-    public EnemyBanditSmallLocomotion Locomotion {get{return _locomotion;}}
     public EnemyBanditSmallAnimator Animator {get{return _animator;}}
 
 
@@ -30,23 +28,27 @@ public class EnemyBanditSmallCore : EnemyCore
     int BanditHurtHash;
 #endregion
 
-    void Start()
+    void Awake() //Awake to fix OnAnimatorMove()
     {
-        _animator = transform.GetChild(0).GetComponent<EnemyBanditSmallAnimator>();
-        _locomotion = GetComponent<EnemyBanditSmallLocomotion>();
-        Rb = GetComponent<Rigidbody2D>();
+        Locomotion = GetComponent<EnemyBanditSmallLocomotion>();
         Stats = GetComponent<EnemyStats>();
+        Attack = transform.GetChild(0).GetComponent<EnemyAttack>();
+        _animator = transform.GetChild(0).GetComponent<EnemyBanditSmallAnimator>();
         
-        _states = new EnemyBanditSmallStates(this);
-        _currentState = _states.Ground();//Have to be after _EnemyBanditSmallControls.FindAction
-        _currentState.StateEnter();
-
         PlayerTrans = Singleton.Instance.Game.Core.transform;
         Agent = GetComponent<NavMeshAgent>();
         Agent.updateRotation = false;
         Agent.updateUpAxis = false;
 
         BanditHurtHash = Animator.ToHash("BanditHurt");
+
+
+
+
+
+        _states = new EnemyBanditSmallStates(this);
+        _currentState = _states.Ground();//Have to be after _EnemyBanditSmallControls.FindAction
+        _currentState.StateEnter();
     }
 
     void Update()

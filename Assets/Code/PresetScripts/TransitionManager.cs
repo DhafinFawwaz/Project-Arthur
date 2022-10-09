@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class TransitionManager : MonoBehaviour
 {
+    [SerializeField] GameObject _buttonBlocker;
 
     float _duration = 0.5f;
     float _delayAfterOut = 0.2f;
@@ -196,11 +197,11 @@ public class TransitionManager : MonoBehaviour
     }
     public void InDefault()
     {
-        SetInDefault();
+        // SetInDefault();
         StartCoroutine(TransitionIn());
     }
 
-
+    public void BlockButton(bool isBlocking) => _buttonBlocker.gameObject.SetActive(isBlocking);
 
     
 }

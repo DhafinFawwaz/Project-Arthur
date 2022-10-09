@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 587470152092652736}
   m_Layer: 0
   m_Name: EditorHelper
-  m_TagString: EditorOnly
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -45,8 +45,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cadd5a7e1dfc5cb409514b1e061cf909, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainMenuCanvas: {fileID: 0}
-  settingsCanvas: {fileID: 0}
+  _mainMenuCanvas: {fileID: 0}
+  _settingsCanvas: {fileID: 0}
 --- !u!114 &587470152092652736
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -59,13 +59,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 430a1dc7a68bbc54d9c03549d2f76796, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  showDebug: 1
-  color: {r: 1, g: 0, b: 0, a: 1}
-  fontSize: 30
-  offset: 20
-  fpsRect:
+  _showDebug: 1
+  _color: {r: 1, g: 0, b: 0, a: 1}
+  _fontSize: 30
+  _offset: 20
+  _fpsRect:
     serializedVersion: 2
     x: 20
     y: 20
     width: 400
     height: 100
+  _core: {fileID: 0}

@@ -22,16 +22,17 @@ public class PlayerAttackSlash1State : PlayerBaseState
     {
         Core.Animator.Play("SwordSlash1");
         Core.Animator.PlaySwordSlash1Particle();
-        Singleton.Instance.Audio.PlaySound(Core.Stats.SlashSFX);
+        Singleton.Instance.Audio.PlaySound(Singleton.Instance.Game.SlashSFX);
         _isCancelable = false;
         _isBufferable = false;
         _isBuffered = false;
         _isGravitied = false;
         _isAnimationEnded = false;
-        _isHitboxEnabled = true;
+        _isHitboxEnabled = false;
         _enemyHitList.Clear();
         _superState.CurrentCombo++;
         Core.Locomotion.Move();
+        Core.Animator.RotateWeaponBasedOnMouse();
     }
 
     public override void StateUpdate()
@@ -94,7 +95,8 @@ public class PlayerAttackSlash1State : PlayerBaseState
                 
                 EnemyCore enemyCore = hitRigidbody.GetComponent<EnemyCore>();
                 Vector2 direction = (hitRigidbody.position - Core.Locomotion.Rb.position).normalized;
-                enemyCore.Launch(direction, 2);
+                enemyCore.OnHurt();
+                enemyCore.Locomotion.Launch(direction, 2);
                 enemyCore.Stats.Damage(Random.Range(20f, 35f), direction);
                 Singleton.Instance.Game.WeakHitLag();
 

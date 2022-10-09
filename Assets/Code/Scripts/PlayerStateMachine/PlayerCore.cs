@@ -70,5 +70,5 @@ public class PlayerCore : MonoBehaviour
     //Creating a specific boolean in each attack state won't work either
     public void OnAnimationEnd() => _currentState.StateOnAnimationEnds();
     
-    
+    public virtual void OnHurt() => _currentState.StateOnHurts();
 }

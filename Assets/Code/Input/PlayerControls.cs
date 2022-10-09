@@ -216,6 +216,15 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Home"",
+                    ""type"": ""Button"",
+                    ""id"": ""12771de3-74ef-4b29-9b4c-c8434403d94d"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -240,6 +249,17 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""action"": ""ShowDebug"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4900e240-8bfb-491a-9ab2-debfa5253a2b"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Home"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -258,6 +278,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         m_Editor = asset.FindActionMap("Editor", throwIfNotFound: true);
         m_Editor_Restart = m_Editor.FindAction("Restart", throwIfNotFound: true);
         m_Editor_ShowDebug = m_Editor.FindAction("ShowDebug", throwIfNotFound: true);
+        m_Editor_Home = m_Editor.FindAction("Home", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -392,12 +413,14 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     private IEditorActions m_EditorActionsCallbackInterface;
     private readonly InputAction m_Editor_Restart;
     private readonly InputAction m_Editor_ShowDebug;
+    private readonly InputAction m_Editor_Home;
     public struct EditorActions
     {
         private @PlayerControls m_Wrapper;
         public EditorActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Restart => m_Wrapper.m_Editor_Restart;
         public InputAction @ShowDebug => m_Wrapper.m_Editor_ShowDebug;
+        public InputAction @Home => m_Wrapper.m_Editor_Home;
         public InputActionMap Get() { return m_Wrapper.m_Editor; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -413,6 +436,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @ShowDebug.started -= m_Wrapper.m_EditorActionsCallbackInterface.OnShowDebug;
                 @ShowDebug.performed -= m_Wrapper.m_EditorActionsCallbackInterface.OnShowDebug;
                 @ShowDebug.canceled -= m_Wrapper.m_EditorActionsCallbackInterface.OnShowDebug;
+                @Home.started -= m_Wrapper.m_EditorActionsCallbackInterface.OnHome;
+                @Home.performed -= m_Wrapper.m_EditorActionsCallbackInterface.OnHome;
+                @Home.canceled -= m_Wrapper.m_EditorActionsCallbackInterface.OnHome;
             }
             m_Wrapper.m_EditorActionsCallbackInterface = instance;
             if (instance != null)
@@ -423,6 +449,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @ShowDebug.started += instance.OnShowDebug;
                 @ShowDebug.performed += instance.OnShowDebug;
                 @ShowDebug.canceled += instance.OnShowDebug;
+                @Home.started += instance.OnHome;
+                @Home.performed += instance.OnHome;
+                @Home.canceled += instance.OnHome;
             }
         }
     }
@@ -440,5 +469,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     {
         void OnRestart(InputAction.CallbackContext context);
         void OnShowDebug(InputAction.CallbackContext context);
+        void OnHome(InputAction.CallbackContext context);
     }
 }

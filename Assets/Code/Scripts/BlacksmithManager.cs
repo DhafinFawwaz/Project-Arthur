@@ -19,4 +19,7 @@ public class BlacksmithManager : MonoBehaviour
         }
 
     }
+
+    void OnTriggerEnter2D() => Singleton.Instance.Game.EnableBlacksmith();
+    void OnTriggerExit2D() => Singleton.Instance.Game.DisableBlacksmith();
 }

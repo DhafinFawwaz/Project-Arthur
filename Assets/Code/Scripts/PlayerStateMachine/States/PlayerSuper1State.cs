@@ -21,6 +21,7 @@ public class PlayerSuper1State : PlayerBaseState
     public override void StateEnter()
     {
         Core.Animator.Play("SwordSuper1");
+        Singleton.Instance.Audio.PlaySound(Singleton.Instance.Game.SuperSlashSFX);
         Core.Animator.PlaySwordSuper1Particle();
         _isCancelable = false;
         _isBufferable = false;
@@ -91,7 +92,7 @@ public class PlayerSuper1State : PlayerBaseState
                 
                 EnemyCore enemyCore = hitRigidbody.GetComponent<EnemyCore>();
                 Vector2 direction = (hitRigidbody.position - Core.Locomotion.Rb.position).normalized;
-                enemyCore.Launch(direction, 2);
+                enemyCore.Locomotion.Launch(direction, 2);
                 enemyCore.Stats.Damage(Random.Range(60f, 80f), direction);
                 Singleton.Instance.Game.WeakHitLag();
 

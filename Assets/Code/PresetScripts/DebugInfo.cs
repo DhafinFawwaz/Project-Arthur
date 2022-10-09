@@ -16,14 +16,16 @@ public class DebugInfo : MonoBehaviour
     PlayerControls _playerControls;
     InputAction _restartInput;
     InputAction _showDebugInput;
+    InputAction _homeInput;
 
-    [SerializeField] EnemyBanditSmallCore _core;
+    [SerializeField] PlayerCore _core;
     void Awake()
     {
         _playerControls = new PlayerControls();
         _playerControls.Enable();
         _restartInput = _playerControls.FindAction("Restart", true);
         _showDebugInput = _playerControls.FindAction("ShowDebug", true);
+        _homeInput = _playerControls.FindAction("Home", true);
     }
     // void OnEnable() => _playerControls.Enable();
 	// void OnDisable() => _playerControls.Disable();
@@ -54,8 +56,19 @@ public class DebugInfo : MonoBehaviour
         {
             string sceneName = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
             Singleton.Instance.Scene.LoadSceneWithTransition(sceneName);
+            Singleton.Instance.Transition.SetMusicFade(false);
+            Singleton.Instance.Transition.AddOutEnd(DisableGame);
+            Singleton.Instance.Transition.AddInStart(EnableGame);
+        }
+        if(_homeInput.WasPressedThisFrame())
+        {
+            Singleton.Instance.Scene.LoadSceneWithTransition("MainMenu");
+            Singleton.Instance.Transition.SetMusicFade(true);
+            Singleton.Instance.Transition.AddOutEnd(DisableGame);
         }
     }
+    void DisableGame() => Singleton.Instance.Game.gameObject.SetActive(false);
+    void EnableGame() => Singleton.Instance.Game.gameObject.SetActive(true);
     void OnGUI()
     {
         if(!_showDebug)return;

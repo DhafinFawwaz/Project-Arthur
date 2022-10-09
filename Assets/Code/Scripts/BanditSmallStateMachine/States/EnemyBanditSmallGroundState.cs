@@ -12,6 +12,8 @@ public class EnemyBanditSmallGroundState : EnemyBanditSmallBaseState
     public override void StateEnter()
     {
         _currentTimeToDelay = Random.Range(-0.2f, 0f); //So that each enemy will be random
+        Core.Agent.acceleration = 15;
+
         
     }
     public override void StateUpdate()
@@ -28,6 +30,11 @@ public class EnemyBanditSmallGroundState : EnemyBanditSmallBaseState
             _currentTimeToDelay = Random.Range(-0.2f, 0f);
             Core.Agent.SetDestination(Core.PlayerTrans.position);
             
+            if(Core.Agent.velocity.magnitude > 10)
+                Core.Agent.acceleration = 8;
+            else
+                Core.Agent.acceleration = 15;
+
             if((Core.PlayerTrans.position - Core.transform.position).magnitude <= 3)
                 SwitchState(States.Attack());
         }

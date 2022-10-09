@@ -55,5 +55,7 @@ public class PlayerStates
     public PlayerBaseState AttackSlash3() => _states[State.attackSlash3];
 
     public PlayerBaseState Super1() => _states[State.super1];
+
+    public PlayerBaseState Hurt() => _states[State.hurt];
     
 }

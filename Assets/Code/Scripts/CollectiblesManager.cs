@@ -8,7 +8,7 @@ public class CollectiblesManager : MonoBehaviour
     [SerializeField] Coin _coinPrefab;
     ObjectPool<Coin> _coinPool;
 
-    void Start()
+    public void OnSceneLoaded()
     {
         _coinPool = new ObjectPool<Coin>(() => {
             return Instantiate(_coinPrefab);

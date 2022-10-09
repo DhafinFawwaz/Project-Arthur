@@ -22,7 +22,7 @@ public class PlayerAttackSlash2State : PlayerBaseState
     {
         Core.Animator.Play("SwordSlash2");
         Core.Animator.PlaySwordSlash2Particle();
-        Singleton.Instance.Audio.PlaySound(Core.Stats.SlashSFX);
+        Singleton.Instance.Audio.PlaySound(Singleton.Instance.Game.SlashSFX);
         _isCancelable = false;
         _isBufferable = false;
         _isBuffered = false;
@@ -31,6 +31,7 @@ public class PlayerAttackSlash2State : PlayerBaseState
         _isHitboxEnabled = true;
         _enemyHitList.Clear();
         _superState.CurrentCombo++;
+        Core.Animator.RotateWeaponBasedOnMouse();
     }
 
     public override void StateUpdate()
@@ -93,7 +94,7 @@ public class PlayerAttackSlash2State : PlayerBaseState
                 
                 EnemyCore enemyCore = hitRigidbody.GetComponent<EnemyCore>();
                 Vector2 direction = (hitRigidbody.position - Core.Locomotion.Rb.position).normalized;
-                enemyCore.Launch(direction, 2);
+                enemyCore.Locomotion.Launch(direction, 2);
                 
                 enemyCore.Stats.Damage(Random.Range(20f, 35f), direction);
                 Singleton.Instance.Game.WeakHitLag();
@@ -110,8 +111,7 @@ public class PlayerAttackSlash2State : PlayerBaseState
 
     public override void StateExit()
     {
-        Core.Animator.IsWeaponRotatable = true;
-        
+        Core.Animator.IsWeaponRotatable = true;        
     }
 
     // public override void StateOnAnimatorMove()

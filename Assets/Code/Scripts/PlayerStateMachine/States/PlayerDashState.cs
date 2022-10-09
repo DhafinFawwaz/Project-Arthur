@@ -31,7 +31,7 @@ public class PlayerDashState : PlayerBaseState
         if(_t <= _tcut)
         {
             _t += Time.fixedDeltaTime/_dashDuration;
-            Core.Locomotion.Rb.MovePosition(Vector3.Lerp(_startPosition, _targetPosition, Ease.OutQuad(_t)));
+            Core.Locomotion.Rb.MovePosition(Vector3.Lerp(_startPosition, _targetPosition, Ease.OutQuart(_t)));
         }
         else SwitchState(States.Ground());
 

@@ -31,4 +31,10 @@ public class PlayerAttackState : PlayerBaseState
     {
         
     }
+
+
+    public override void StateOnHurt()
+    {
+        SwitchState(States.Hurt());
+    }
 }
