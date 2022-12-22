@@ -9,4 +9,4 @@
     <img width="49%" src="./Images/4.gif"> 
 </p>
 
-A Top Down pixel art game made with UnityEngine(C#, HLSL) made for GIM submission. The game is currently unfinished.
+A Top Down pixel art game made with UnityEngine(C#, HLSL) made for GIM submission. The game is currently unfinished. You can also play it here https://kitkatmt.itch.io/sword-boi
