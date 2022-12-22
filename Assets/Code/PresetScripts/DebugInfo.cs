@@ -69,39 +69,39 @@ public class DebugInfo : MonoBehaviour
     }
     void DisableGame() => Singleton.Instance.Game.gameObject.SetActive(false);
     void EnableGame() => Singleton.Instance.Game.gameObject.SetActive(true);
-    void OnGUI()
-    {
-        if(!_showDebug)return;
-        _style.normal.textColor = _color;
-        _style.alignment = TextAnchor.UpperRight;
+    // void OnGUI()
+    // {
+    //     if(!_showDebug)return;
+    //     _style.normal.textColor = _color;
+    //     _style.alignment = TextAnchor.UpperRight;
 
-        float multiplier = (float)Screen.height/1080;
-        _style.fontSize = (int)(_fontSize * multiplier);
+    //     float multiplier = (float)Screen.height/1080;
+    //     _style.fontSize = (int)(_fontSize * multiplier);
 
-        _fpsRect.x = _offset + _fpsRect.width;
-        _fpsRect.y = _offset;
-        Rect labelRect = new Rect(Screen.width - _fpsRect.x * multiplier, 
-                           _fpsRect.y * multiplier, 
-                           _fpsRect.width * multiplier, 
-                           _fpsRect.height * multiplier);
+    //     _fpsRect.x = _offset + _fpsRect.width;
+    //     _fpsRect.y = _offset;
+    //     Rect labelRect = new Rect(Screen.width - _fpsRect.x * multiplier, 
+    //                        _fpsRect.y * multiplier, 
+    //                        _fpsRect.width * multiplier, 
+    //                        _fpsRect.height * multiplier);
 
-        string labelText = "<b>FPS: "+ string.Format("{0:0.0}\n"+
-            "MaxRes: " +Display.main.systemWidth.ToString()+"x"+Display.main.systemHeight.ToString() + "\n" +
-            "Res: "  +Screen.width.ToString()+"x"+Screen.height.ToString(),_fps) + "\n";
+    //     string labelText = "<b>FPS: "+ string.Format("{0:0.0}\n"+
+    //         "MaxRes: " +Display.main.systemWidth.ToString()+"x"+Display.main.systemHeight.ToString() + "\n" +
+    //         "Res: "  +Screen.width.ToString()+"x"+Screen.height.ToString(),_fps) + "\n";
 
-        if(_core != null)
-        {
-            if(_core.CurrentState != null)
-            {
-                labelText += _core.CurrentState.ToString() + "\n";
-                if(_core.CurrentState.CurrentSubState != null)
-                    labelText += _core.CurrentState.CurrentSubState.ToString() + "\n";
-            }
-        }
+    //     if(_core != null)
+    //     {
+    //         if(_core.CurrentState != null)
+    //         {
+    //             labelText += _core.CurrentState.ToString() + "\n";
+    //             if(_core.CurrentState.CurrentSubState != null)
+    //                 labelText += _core.CurrentState.CurrentSubState.ToString() + "\n";
+    //         }
+    //     }
             
-        labelText += "Press R key to restart\nPress F1 to toggle debug\nLeft Click to attack\n Right Click to dash\n spacebar to super ability 1";
-        labelText += "</b>";
+    //     labelText += "Press R key to restart\nPress F1 to toggle debug\nLeft Click to attack\n Right Click to dash\n spacebar to super ability 1";
+    //     labelText += "</b>";
 
-        GUI.Label(labelRect, labelText ,_style);
-    }
+    //     GUI.Label(labelRect, labelText ,_style);
+    // }
 }
