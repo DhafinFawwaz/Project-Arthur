@@ -653,6 +653,10 @@ PrefabInstance:
       value: EditorHelper
       objectReference: {fileID: 0}
     - target: {fileID: 5840741759717950000, guid: 0218131ca98637943a98fa2d282e2c9f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5840741759717950000, guid: 0218131ca98637943a98fa2d282e2c9f, type: 3}
       propertyPath: m_TagString
       value: Untagged
       objectReference: {fileID: 0}

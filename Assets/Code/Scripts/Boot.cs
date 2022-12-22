@@ -8,7 +8,7 @@ public class Boot : MonoBehaviour
     {
         yield return new WaitForSecondsRealtime(1f);
 
-        Singleton.Instance.Resolution.SetResolutionPercentage(1, 2);
+        // Singleton.Instance.Resolution.SetResolutionPercentage(1, 2);
         Singleton.Instance.Scene.LoadSceneWithTransition("MainMenu");
     }
 

@@ -271,8 +271,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _area: {x: 28.445, y: 16}
-  _amount: 3000
-  _spawnBatch: 10
+  _amount: 128
+  _spawnBatch: 16
   _startDelay: 2
   _coin: {fileID: 7756741676673552504, guid: dad79e8ad73199c4fb0a15346afc6691, type: 3}
   _spawned: 0

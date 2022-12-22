@@ -16,12 +16,16 @@ public class SliderUI : MonoBehaviour
     void Start()
     {
         _previousValue = _slider.value;
+        _slider.onValueChanged.AddListener(delegate {SetValue ();});
     }
     public void SetValueInstant(float newVal)
     {
+        _slider.onValueChanged.RemoveAllListeners();
         _sliderValue = newVal;
         _fillImg.fillAmount = _sliderValue;
         _slider.value = _sliderValue;
+        _handleImg.position = _handlePos.position;
+        _slider.onValueChanged.AddListener(delegate {SetValue ();});
     }
     public void SetValue()
     {

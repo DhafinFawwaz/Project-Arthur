@@ -45,7 +45,7 @@ public class MainMenuManager : MonoBehaviour
     SaveData _data;
     void Start()
     {
-        Singleton.Instance.Resolution.SetResolutionPercentage(1, 2);
+        // Singleton.Instance.Resolution.SetResolutionPercentage(1, 2);
         Singleton.Instance.Game.gameObject.SetActive(false);
         _data = Singleton.Instance.Save.LoadData();
         
